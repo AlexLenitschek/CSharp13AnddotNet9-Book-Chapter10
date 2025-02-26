@@ -5,4 +5,9 @@
 // The use of using ensures that the database context gets disposed after use.
 
 ConfigureConsole();
-QueryingCategories();
+//QueryingCategories();
+//FilteredIncludes();
+//QueryingProducts();
+//GettingOneProduct();
+//QueryingWithLike();
+GetProductUsingSql();

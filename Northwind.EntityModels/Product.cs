@@ -6,7 +6,7 @@ namespace Northwind.EntityModels;
 
 public class Product
 {
-    public int ProductID { get; set; }
+    public int ProductId { get; set; }
 
     [Required]
     [StringLength(40)]
