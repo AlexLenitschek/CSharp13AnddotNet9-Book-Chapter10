@@ -10,9 +10,11 @@ using static System.Environment;
 // delegate to reference the two different methods.
 
 delegate void WriteDataDelegate(string name, string? value); // To save a Method in a variable.
-                                                             // Absolutely unnecessary a one could use the method itself instead of the delegate.
-                                                             // But it does saves some space I guess as:
+                                                             // Kinda unnecessary as one could use the method itself instead of the delegate.
+                                                             // But it does save some space I guess as:
                                                              // writeMethod is shorter than xml.WriteAttributeString or xml.WriteElementString.
+                                                             // And lets us write one foreach loop that is executed against the database
+                                                             // instead of having the same block twice for both cases: attributes and elements.
 
 partial class Program
 {
