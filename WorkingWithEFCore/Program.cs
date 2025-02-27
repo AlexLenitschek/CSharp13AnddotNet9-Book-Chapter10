@@ -10,4 +10,5 @@ ConfigureConsole();
 //QueryingProducts();
 //GettingOneProduct();
 //QueryingWithLike();
-GetProductUsingSql();
+//GetProductUsingSql();
+GettingAllCategoriesAndProducts();

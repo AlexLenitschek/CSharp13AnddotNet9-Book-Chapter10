@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithEFCore", "Workin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EntityModels", "Northwind.EntityModels\Northwind.EntityModels.csproj", "{D89331C9-C250-4C9F-941F-2B95CE88E12B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_DataSerialization", "Exercise_DataSerialization\Exercise_DataSerialization.csproj", "{1F9102EF-1725-4D37-8680-FEC1E245523C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D89331C9-C250-4C9F-941F-2B95CE88E12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89331C9-C250-4C9F-941F-2B95CE88E12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89331C9-C250-4C9F-941F-2B95CE88E12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F9102EF-1725-4D37-8680-FEC1E245523C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F9102EF-1725-4D37-8680-FEC1E245523C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F9102EF-1725-4D37-8680-FEC1E245523C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F9102EF-1725-4D37-8680-FEC1E245523C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
