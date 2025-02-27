@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CoursesAndStudents": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Alex\\source\\repos\\Chapter10\\CoursesAndStudents"
+    }
+  }
+}
