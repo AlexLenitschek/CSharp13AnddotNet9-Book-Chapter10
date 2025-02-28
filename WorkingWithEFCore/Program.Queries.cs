@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore; // To use Include method.
 using Northwind.EntityModels; // To use Northwind, Category, and Product.
+using Microsoft.EntityFrameworkCore.ChangeTracking;// To use CollectionEntry.
 
 partial class Program
 {
@@ -11,8 +12,11 @@ partial class Program
 
         // A query  to get all categories and their related products.
         // This is a query definition. Nothing has been executed against the database.
-        IQueryable<Category>? categories = db.Categories?
-            .Include(c => c.Products);
+        IQueryable<Category>? categories; 
+        // = db.Categories;
+        //.Include(c => c.Products); // Removed to test Lazy Loading.
+        db.ChangeTracker.LazyLoadingEnabled = false;
+
         // You could call any of the following LINQ methods and nothinjg will be executed against the database:
         // Where, GroupBy, Select, SelectMany, OfType, OrderBy, ThenBy, Join, GroupJoin, Take, Skip, Reverse.
 
@@ -20,11 +24,29 @@ partial class Program
 
         // Usually methods that return a single value do not support deferred execution.
 
+        Write("Enable eager loading? (Y/N): ");
+        bool eagerLoading = (ReadKey().Key == ConsoleKey.Y);
+        bool explicitLoading = false;
+        WriteLine();
+
+        if (eagerLoading)
+        {
+            categories = db.Categories?.Include(c => c.Products);
+        }
+        else
+        {
+            categories = db.Categories;
+            Write("Enable explicit loading? (Y/N): ");
+            explicitLoading = (ReadKey().Key == ConsoleKey.Y);
+            WriteLine();
+        }
+        
         if (categories is null || !categories.Any()) // Important order, as Any() would throw an exception if categories is null.
         {
             Fail("No categories found.");
             return;
         }
+
 
         // Calling ToQueryString does not execute against a database.
         //LINQ to Entities just converts the LINQ query to an SQL statement.
@@ -33,6 +55,20 @@ partial class Program
         // Execute query andenumerate results.
         foreach (Category c in categories)
         {
+            if (explicitLoading)
+            {
+                Write($"Explicitly load products for {c.CategoryName}? (Y/N): ");
+                ConsoleKeyInfo key = ReadKey();
+                WriteLine();
+
+                if (key.Key == ConsoleKey.Y)
+                {
+                    CollectionEntry<Category, Product> products =
+                      db.Entry(c).Collection(c2 => c2.Products);
+
+                    if (!products.IsLoaded) products.Load();
+                }
+            }
             WriteLine($"{c.CategoryName} has {c.Products.Count} products.");
         }
     }
@@ -217,5 +253,26 @@ partial class Program
             }
         }
 
+    }
+
+    private static void LazyLoadingWithNoTracking()
+    {
+        using NorthwindDb db = new();
+
+        SectionTitle("Lazy-loading with no tracking");
+
+        IQueryable<Product>? products = db.Products?.AsNoTracking();
+
+        if (products is null || !products.Any())
+        {
+            Fail("No products found.");
+            return;
+        }
+
+        foreach (Product p in products)
+        {
+            WriteLine("{0} is in category named {1}.",
+              p.ProductName, p.Category.CategoryName);
+        }
     }
 }

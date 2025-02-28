@@ -30,5 +30,6 @@
 
   <ItemGroup>
     <PackageReference Version="9.0.0" Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Version="9.0.0" Include="Microsoft.EntityFrameworkCore.Proxies" />
   </ItemGroup>
 </Project>
